@@ -47,7 +47,7 @@ function NoticeCard({ title = "Nothing Found", message, onSupport }) {
 }
 
 function LookupSection({ onSupportUnavailable }) {
-  const [email, setEmail] = useState("makasa@leapomi.cloud");
+  const [email, setEmail] = useState("");
   const [verificationType, setVerificationType] = useState("signin");
   const [recentEmails, setRecentEmails] = useState(loadRecentEmails);
   const [status, setStatus] = useState("idle"); // idle | loading | error | done

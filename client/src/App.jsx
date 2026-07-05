@@ -5,6 +5,7 @@ import TopNav, { PillButton } from "./TopNav.jsx";
 import WelcomeCard from "./WelcomeCard.jsx";
 import Toast from "./Toast.jsx";
 import { openSupportChat } from "./support.js";
+import { apiUrl } from "./api.js";
 
 const RECENT_EMAILS_KEY = "qa-recent-emails";
 const MAX_RECENT = 5;
@@ -96,7 +97,7 @@ function LookupSection({ onSupportUnavailable }) {
     rememberEmail(trimmedEmail);
 
     try {
-      const res = await fetch("/api/action", {
+      const res = await fetch(apiUrl("/api/action"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: trimmedEmail, action: type.action }),
@@ -306,7 +307,7 @@ export default function App() {
 
   useEffect(() => {
     let cancelled = false;
-    fetch("/api/health")
+    fetch(apiUrl("/api/health"))
       .then((r) => r.json())
       .then(() => {
         if (!cancelled) setActive(true);
